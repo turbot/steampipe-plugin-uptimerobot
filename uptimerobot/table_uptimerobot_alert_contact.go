@@ -20,7 +20,7 @@ func tableUptimeAlertContact(ctx context.Context) *plugin.Table {
 			{
 				Name:        "id",
 				Type:        proto.ColumnType_STRING,
-				Description: "unique id of the alert contact.",
+				Description: "Unique id of the alert contact.",
 				Transform:   transform.FromField("ID"),
 			},
 			{
@@ -35,13 +35,13 @@ func tableUptimeAlertContact(ctx context.Context) *plugin.Table {
 			},
 			{
 				Name:        "status",
-				Type:        proto.ColumnType_STRING,
+				Type:        proto.ColumnType_INT,
 				Description: "Status of alert contact.",
 			},
 			{
 				Name:        "value",
 				Type:        proto.ColumnType_STRING,
-				Description: "The description of alert policy.",
+				Description: "Value of alert policy.",
 			},
 		},
 	}
