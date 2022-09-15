@@ -11,11 +11,11 @@ import (
 )
 
 type uptimerobotConfig struct {
-	APIToken *string `cty:"api_token"`
+	APIKey *string `cty:"api_key"`
 }
 
 var ConfigSchema = map[string]*schema.Attribute{
-	"api_token": {
+	"api_key": {
 		Type: schema.TypeString,
 	},
 }
@@ -36,15 +36,15 @@ func GetConfig(connection *plugin.Connection) uptimerobotConfig {
 func connect(_ context.Context, d *plugin.QueryData) (*uptimerobotapi.Client, error) {
 	uptimerobotConfig := GetConfig(d.Connection)
 
-	apiToken := os.Getenv("UPTIMEROBOT_API_TOKEN")
-	if uptimerobotConfig.APIToken != nil {
-		apiToken = *uptimerobotConfig.APIToken
+	apiKey := os.Getenv("UPTIMEROBOT_API_KEY")
+	if uptimerobotConfig.APIKey != nil {
+		apiKey = *uptimerobotConfig.APIKey
 	}
-	if apiToken == "" {
-		return nil, errors.New("'api_token' must be set in the connection configuration. Edit your connection configuration file and then restart Steampipe")
+	if apiKey == "" {
+		return nil, errors.New("'api_key' must be set in the connection configuration. Edit your connection configuration file and then restart Steampipe")
 	}
 
-	client := uptimerobotapi.NewClient(apiToken)
+	client := uptimerobotapi.NewClient(apiKey)
 
 	return client, nil
 }
