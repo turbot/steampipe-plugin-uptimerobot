@@ -28,5 +28,20 @@ from
 where friendly_name='test';
 ```
 
+### List the monitor with status paused 
+
+```sql
+select
+  id,
+  friendly_name,
+  url
+from
+  uptimerobot_monitor
+where status=0;
+```
+
+
+
+
 
 
