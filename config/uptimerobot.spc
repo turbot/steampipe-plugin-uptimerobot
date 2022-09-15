@@ -1,5 +1,5 @@
 connection "uptimerobot" {
-  plugin  = "uptimerobot"
+  plugin = "uptimerobot"
 
-  # apiKey = "YOUR_UPTIMEROBOT_API_KEY"
+  # api_key = "api_123"
 }
