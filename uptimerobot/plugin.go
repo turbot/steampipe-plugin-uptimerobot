@@ -22,9 +22,9 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			Schema:      ConfigSchema,
 		},
 		TableMap: map[string]*plugin.Table{
-			"uptimerobot_monitor": tableUptimeRobotMonitor(ctx),
+			"uptimerobot_account": tableUptimerobotAccount(ctx),
+			// "uptimerobot_monitor": tableUptimeRobotMonitor(ctx),
 		},
 	}
-
 	return p
 }
