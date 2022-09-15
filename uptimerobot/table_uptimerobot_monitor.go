@@ -24,7 +24,7 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{Name: "friendly_name", Type: proto.ColumnType_STRING, Description: "The friendly name for monitors."},
 			{Name: "url", Type: proto.ColumnType_STRING, Description: "The url/ip of the monitored website.", Transform: transform.FromField("URL")},
 			{Name: "type", Type: proto.ColumnType_INT, Description: "Type of the website monitored."},
-			{Name: "subtype", Type: proto.ColumnType_INT, Description: "Subtype of the website monitored."},
+			{Name: "sub_type", Type: proto.ColumnType_INT, Description: "Subtype of the website monitored."},
 			{Name: "keyword_type", Type: proto.ColumnType_INT, Description: "The keyword of the monitors."},
 			{Name: "port", Type: proto.ColumnType_INT, Description: "The port of the website monitored."},
 			{Name: "keyword_value", Type: proto.ColumnType_STRING, Description: "The keyword value of the website."},
