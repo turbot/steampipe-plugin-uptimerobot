@@ -1,16 +1,21 @@
 package uptimerobot
 
 import (
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v3/plugin/schema"
+	"context"
+	"errors"
+	"os"
+
+	uptimerobot "github.com/bitfield/uptimerobot/pkg"
+	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/schema"
 )
 
 type uptimerobotConfig struct {
-	Token *string `cty:"apiKey"`
+	APIKey *string `cty:"api_key"`
 }
 
 var ConfigSchema = map[string]*schema.Attribute{
-	"apiKey": {
+	"api_key": {
 		Type: schema.TypeString,
 	},
 }
@@ -26,4 +31,21 @@ func GetConfig(connection *plugin.Connection) uptimerobotConfig {
 	}
 	config, _ := connection.Config.(uptimerobotConfig)
 	return config
+}
+
+func connect(_ context.Context, d *plugin.QueryData) (uptimerobot.Client, error) {
+	uptimerobotConfig := GetConfig(d.Connection)
+
+	apiKey := os.Getenv("UPTIME_ROBOT_API_KEY")
+	if uptimerobotConfig.APIKey != nil {
+		apiKey = *uptimerobotConfig.APIKey
+	}
+	if apiKey == "" {
+		test := uptimerobot.Client{}
+		return test, errors.New("'api_key' must be set in the connection configuration. Edit your connection configuration file and then restart Steampipe")
+	}
+
+	client := uptimerobot.New(apiKey)
+
+	return client, nil
 }
