@@ -3,9 +3,9 @@ package uptimerobot
 import (
 	"context"
 
+	"github.com/bigdatasourav/uptimerobotapi"
 	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
 )
 
 //// TABLE DEFINITION
@@ -21,7 +21,7 @@ func tableUptimeAlertContact(ctx context.Context) *plugin.Table {
 				Name:        "id",
 				Type:        proto.ColumnType_STRING,
 				Description: "Unique id of the alert contact.",
-				Transform:   transform.FromField("ID"),
+				// Transform:   transform.FromField("ID"),
 			},
 			{
 				Name:        "friendly_name",
@@ -54,12 +54,15 @@ func listAlertContact(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 		return nil, err
 	}
 
-	contacts, err := conn.AllAlertContacts()
+	// creating a variable of sruct type
+	var params = uptimerobotapi.GetAlertContactsParams{}
+
+	contacts, err := conn.AlertContact.GetAlertContacts(params)
 	if err != nil {
 		return nil, err
 	}
 
-	for _, item := range contacts {
+	for _, item := range contacts.AlertContacts {
 		d.StreamListItem(ctx, item)
 	}
 
