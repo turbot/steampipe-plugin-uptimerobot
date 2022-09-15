@@ -1,106 +1,73 @@
 ---
 organization: Turbot
-category: ["public cloud"]
-icon_url: "/images/plugins/turbot/digitalocean.svg"
-brand_color: "#008bcf"
-display_name: "DigitalOcean"
-name: "digitalocean"
-description: "Steampipe plugin for querying DigitalOcean databases, networks, and other resources."
-og_description: "Query DigitalOcean with SQL! Open source CLI. No DB required."
-og_image: "/images/plugins/turbot/do-social-graphic.png"
+category: ["website monitoring"]
+icon_url: "/images/plugins/turbot/uptimerobot.svg"
+brand_color: "  "
+display_name: "UptimeRobot"
+short_name: "uptimerobot"
+description: "Steampipe plugin to query monitors, alert contacts and more from UptimeRobot."
+og_description: "Query UptimeRobot with SQL! Open source CLI. No DB required."
+og_image: "/images/plugins/turbot/uptimerobot-social-graphic.png"
 ---
 
-# DigitalOcean + Steampipe
+# UptimeRobot + Steampipe
 
-Query your DigitalOcean infrastructure including droplets, databases, networks, and more.
-
-[DigitalOcean](https://www.digitalocean.com/) provides scalable and on-demand cloud infrastructure solutions for hosting or storage needs.
+[UptimeRobot](https://uptimerobot.com/) is a free tool used to monitor websites.
 
 [Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
 
-For example:
+Get UptimeRobot account details:
 
 ```sql
 select
-  slug,
-  name,
-  available
+  email,
+  monitor_limit,
+  monitor_interval,
+  up_monitors
 from
-  digitalocean_region
- ```
- 
- ```
-+------+-------------+-----------+
-| slug | name        | available |
-+------+-------------+-----------+
-| nyc1 | New York 1  | true      |
-| nyc3 | New York 3  | true      |
-| ams2 | Amsterdam 2 | false     |
-| sgp1 | Singapore 1 | true      |
-| nyc2 | New York 2  | false     |
-+------+-------------+-----------+
+  uptimerobot_account;
+```
+
+```
++---------------------+---------------+------------------+-------------+
+| email               | monitor_limit | monitor_interval | up_monitors |
++---------------------+---------------+------------------+-------------+
+| niharika@turbot.com | 50            | 5                | 3           |
++---------------------+---------------+------------------+-------------+
 ```
 
 ## Documentation
 
-- **[Table definitions & examples →](/plugins/turbot/digitalocean/tables)**
+- **[Table definitions & examples →](/plugins/turbot/uptimerobot/tables)**
 
 ## Get started
 
 ### Install
 
-Download and install the latest DigitalOcean plugin:
+Download and install the latest UptimeRobot plugin:
 
 ```bash
-steampipe plugin install digitalocean
+steampipe plugin install uptimerobot
 ```
 
 ### Configuration
 
-Installing the latest DigitalOcean plugin will create a config file (`~/.steampipe/config/digitalocean.spc`) with a single connection named `digitalocean`:
+Installing the latest uptimerobot plugin will create a config file (`~/.steampipe/config/uptimerobot.spc`) with a single connection named `uptimerobot`:
 
 ```hcl
-connection "digitalocean" {
-  plugin  = "digitalocean"
+connection "uptimerobot" {
+  plugin       = "uptimerobot"
 
-  # Personal Access Token for your DigitalOcean account
-  # Reference: https://www.digitalocean.com/docs/apis-clis/api/create-personal-access-token
-  # Env variables (in order of precedence): DIGITALOCEAN_TOKEN, DIGITALOCEAN_ACCESS_TOKEN
-  # token = "YOUR_DIGITALOCEAN_ACCESS_TOKEN"
+  # API Key for your UptimeRobot account
+  # Reference: https://uptimerobot.com/api/
+  # Env variable: UPTIMEROBOT_API_KEY
+  # api_key = "YOUR_UPTIMEROBOT_ACCESS_KEY"
 }
 ```
 
-### Example Configurations
+- `api_key` - API key from UptimeRobot.
 
-- Connect to a single account:
+## Get involved
 
-  ```hcl
-  connection "digitalocean_my_account" {
-    plugin = "digitalocean"
-    token  = "1646968370949-df954218b5da5b8614c85cc454136b27"
-  }
-  ```
-
-- Create connections to multiple accounts:
-
-  ```hcl
-  connection "account_aaa" {
-    plugin    = "digitalocean"
-    token     = "1646968370949-df954218b5da5b8614c85cc4541abcde"
-  }
-
-  connection "account_bbb" {
-    plugin    = "digitalocean"
-    token     = "1646968370949-df954218b5da5b8614c85cc4541fghij"
-  }
-
-  connection "account_ccc" {
-    plugin    = "digitalocean"
-    token     = "1646968370949-df954218b5da5b8614c85cc4541klmno"
-  }
-  ```
-
-## Get Involved
-
-* Open source: https://github.com/turbot/steampipe-plugin-digitalocean
-* Community: [Slack Channel](https://steampipe.io/community/join)
+- Open source: https://github.com/turbot/steampipe-plugin-uptimerobot
+- Community: [Slack Channel](https://steampipe.io/community/join)
