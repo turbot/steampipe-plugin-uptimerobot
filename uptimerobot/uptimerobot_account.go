@@ -16,11 +16,15 @@ func tableUptimeRobotAccount(ctx context.Context) *plugin.Table {
 		},
 		Columns: []*plugin.Column{
 			{Name: "email", Type: proto.ColumnType_STRING, Description: "Email with which the account is registered."},
+			{Name: "user_id", Type: proto.ColumnType_INT, Description: "User Id with which the account is registered."},
+			{Name: "first_name", Type: proto.ColumnType_STRING, Description: "First name with which the account is registered."},
+			{Name: "sms_credits", Type: proto.ColumnType_INT, Description: "Sms credits with which the account is registered."},
 			{Name: "monitor_limit", Type: proto.ColumnType_INT, Description: "Maximum number of monitors allowed for the account."},
 			{Name: "monitor_interval", Type: proto.ColumnType_INT, Description: "Monitor interval for the account."},
 			{Name: "up_monitors", Type: proto.ColumnType_INT, Description: "Number of monitors up in the account."},
 			{Name: "down_monitors", Type: proto.ColumnType_INT, Description: "Number of monitors down in the account."},
 			{Name: "paused_monitors", Type: proto.ColumnType_INT, Description: "Number of monitors paused in the account."},
+			{Name: "total_monitors_count", Type: proto.ColumnType_INT, Description: "Total number of monitors."},
 		},
 	}
 }
