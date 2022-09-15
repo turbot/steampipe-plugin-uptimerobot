@@ -31,3 +31,18 @@ from
 where
   type = 18;
 ```
+
+### List inactive alert contacts
+
+```sql
+select
+  id,
+  friendly_name,
+  type,
+  status,
+  value
+from
+  uptimerobot_alert_contact
+where
+  status = '0';
+```
