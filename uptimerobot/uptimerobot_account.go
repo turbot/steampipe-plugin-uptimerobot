@@ -31,7 +31,7 @@ func listAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 		plugin.Logger(ctx).Error("listAccount", "conection_error", err)
 		return nil, err
 	}
-	account, err := conn.GetAccountDetails()
+	account, err := conn.Account.GetAccountDetails()
 	if err != nil {
 		plugin.Logger(ctx).Error("listAccount", "api_error", err)
 		return nil, err
