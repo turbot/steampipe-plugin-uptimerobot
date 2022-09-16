@@ -51,12 +51,12 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{
 				Name:        "status",
 				Type:        proto.ColumnType_INT,
-				Description: "The status of the monitor. When used with the editMonitor method 0 (to pause) or 1 (to start) can be sent.",
+				Description: "The status of the monitor. Possible values are 0 (paused), 1 (not checked yet), 2 (up), 8 (seems down), 9 (down).",
 			},
 			{
 				Name:        "type",
 				Type:        proto.ColumnType_INT,
-				Description: "the type of the monitor. See monitor>type parameter in https://uptimerobot.com/api/.",
+				Description: "the type of the monitor. Possible values are 1 (HTTP(s)), 2 (Keyword), 3 (Ping), 4 (Port), 5 (Heartbeat).",
 			},
 			{
 				Name:        "create_date_time",
@@ -67,12 +67,12 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{
 				Name:        "http_username",
 				Type:        proto.ColumnType_STRING,
-				Description: "It used for password-protected web pages. Available for HTTP and keyword monitoring.",
+				Description: "Used for password-protected web pages. Available for HTTP and keyword monitoring.",
 			},
 			{
 				Name:        "http_password",
 				Type:        proto.ColumnType_STRING,
-				Description: "It used for password-protected web pages. Available for HTTP and keyword monitoring.",
+				Description: "Used for password-protected web pages. Available for HTTP and keyword monitoring.",
 			},
 			{
 				Name:        "interval",
@@ -88,12 +88,12 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{
 				Name:        "keyword_case_type",
 				Type:        proto.ColumnType_INT,
-				Description: "It used only for Keyword monitoring (monitor>type = 2) if set the keyword value will be checked as case sensitive or case insensitive according the selection. (case sensitive by default).",
+				Description: "Used only for Keyword monitoring (monitor>type = 2) if set the keyword value will be checked as case sensitive or case insensitive according the selection (case sensitive by default). Possible values are 0 (case sensitive) and 1 (case insensitive).",
 			},
 			{
 				Name:        "keyword_type",
 				Type:        proto.ColumnType_STRING,
-				Description: "It used only for Keyword monitoring (monitor>type = 2) and shows if the monitor will be flagged as down when the keyword exists or not exists.",
+				Description: "Used only for Keyword monitoring (monitor>type = 2) and shows if the monitor will be flagged as down when the keyword exists or not exists. Possible values are 1 (exists) and 2 (not exists).",
 			},
 			{
 				Name:        "keyword_value",
@@ -108,7 +108,7 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{
 				Name:        "sub_type",
 				Type:        proto.ColumnType_STRING,
-				Description: "It used only for Port monitoring (monitor>type = 4) and shows which pre-defined port/service is monitored or if a custom port is monitored.",
+				Description: "Used only for Port monitoring (monitor>type = 4) and shows which pre-defined port/service is monitored or if a custom port is monitored. Possible values are 1 (HTTP 80), 2 (HTTPS 443), 3 (FTP 21), 4 (SMPT 25), 5 (POP3 110), 6 (IMAP 143), 99 (Custom Port).",
 			},
 			{
 				Name:        "timeout",

@@ -40,7 +40,7 @@ func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 			{
 				Name:        "type",
 				Type:        proto.ColumnType_INT,
-				Description: "The type of the alert contact notified. See alertcontact>type parameter in https://uptimerobot.com/api/.",
+				Description: "The type of the alert contact notified. For a list of possible values, please see 'alertcontact>type' parameter in https://uptimerobot.com/api.",
 			},
 			{
 				Name:        "value",

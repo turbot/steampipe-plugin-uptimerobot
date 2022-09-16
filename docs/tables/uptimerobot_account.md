@@ -1,6 +1,6 @@
 # Table: uptimerobot_account
 
-Provide account details of the UptimeRobot.
+UptimeRobot acounts can be used to monitor websites, keywords, pings, ports, and more.
 
 ## Examples
 
@@ -17,7 +17,7 @@ from
   uptimerobot_account;
 ```
 
-### Get monitor limits of your accounts
+### Get monitor limits of the account
 
 ```sql
 select
@@ -29,7 +29,7 @@ from
   uptimerobot_account;
 ```
 
-### List up/down/paused monitors
+### List up, down, and paused monitors in the account
 
 ```sql
 select

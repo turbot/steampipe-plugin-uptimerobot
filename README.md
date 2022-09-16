@@ -22,7 +22,7 @@ Configure the API key in `~/.steampipe/config/uptimerobot.spc`:
 ```hcl
 connection "uptimerobot" {
   plugin  = "uptimerobot"
-  api_key = "uptime_robot_FWdKCeYK6sYQeJhNPTHRf3Ew_EXAMPLE"
+  api_key = "u1857235-592bd3c445thisisafakekey"
 }
 ```
 

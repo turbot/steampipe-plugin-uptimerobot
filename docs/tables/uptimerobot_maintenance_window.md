@@ -2,16 +2,6 @@
 
 Provides details of maintenance window in the UptimeRobot.
 
-These are the supported types:
-- 1 - Once
-- 2 - Daily
-- 3 - Weekly
-- 4 - Monthly
-
-These are the supported statuses:
-- 0 - paused
-- 1 - active
-
 ## Examples
 
 ### Basic info
