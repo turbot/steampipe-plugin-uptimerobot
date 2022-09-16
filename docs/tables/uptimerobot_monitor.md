@@ -39,9 +39,3 @@ from
   uptimerobot_monitor
 where status=0;
 ```
-
-
-
-
-
-

@@ -13,7 +13,7 @@ import (
 func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
 		Name:        "uptimerobot_monitor",
-		Description: "Retrieve monitoring websites in your current account.",
+		Description: "UptimeRobot Retrieve Websites Monitored Current Account.",
 		List: &plugin.ListConfig{
 			Hydrate: listMonitors,
 		},
