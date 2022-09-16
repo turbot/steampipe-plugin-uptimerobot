@@ -4,7 +4,7 @@ go 1.19
 
 require github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7
 
-require github.com/bigdatasourav/uptimerobotapi v0.2.0
+require github.com/bigdatasourav/uptimerobotapi v0.3.0
 
 require (
 	github.com/XiaoMi/pegasus-go-client v0.0.0-20210427083443-f3b6b08bc4c2 // indirect
@@ -58,8 +58,7 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/stevenle/topsort v0.0.0-20130922064739-8130c1d7596b // indirect
 	github.com/tkrajina/go-reflector v0.5.4 // indirect
-	github.com/turbot/go-kit v0.4.0 // indirect
-	github.com/turbot/steampipe-plugin-sdk/v3 v3.3.2
+	github.com/turbot/go-kit v0.4.0
 	github.com/zclconf/go-cty v1.10.0 // indirect
 	go.opentelemetry.io/otel v1.7.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.7.0 // indirect

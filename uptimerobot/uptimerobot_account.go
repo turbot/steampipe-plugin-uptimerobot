@@ -10,7 +10,7 @@ import (
 func tableUptimeRobotAccount(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
 		Name:        "uptimerobot_account",
-		Description: "Retrieve information about your current account.",
+		Description: "UptimeRobot Account.",
 		List: &plugin.ListConfig{
 			Hydrate: listAccount,
 		},
