@@ -67,8 +67,8 @@ github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24
 github.com/beorn7/perks v1.0.0/go.mod h1:KWe93zE9D1o94FZ5RNwFwVgaQK1VOXiVxmqh+CedLV8=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
-github.com/bigdatasourav/uptimerobotapi v0.2.0 h1:Sudh5lsZx+sunJKc8ci6pfDcVAjs0CVSeyjZ2/VtI9w=
-github.com/bigdatasourav/uptimerobotapi v0.2.0/go.mod h1:dfRmaJFoz5igCn8gkU7G6Eu4Iv0UpqB/eTmB38NPF/o=
+github.com/bigdatasourav/uptimerobotapi v0.3.0 h1:jJLdB3KYbdp1S9spUToFZVEcvLeTBO51HeMDMSeoPKI=
+github.com/bigdatasourav/uptimerobotapi v0.3.0/go.mod h1:dfRmaJFoz5igCn8gkU7G6Eu4Iv0UpqB/eTmB38NPF/o=
 github.com/bradfitz/gomemcache v0.0.0-20220106215444-fb4bf637b56d h1:pVrfxiGfwelyab6n21ZBkbkmbevaf+WvMIiR7sr97hw=
 github.com/bradfitz/gomemcache v0.0.0-20220106215444-fb4bf637b56d/go.mod h1:H0wQNHz2YrLsuXOZozoeDmnHXkNCRmMW0gwFWDfEZDA=
 github.com/btubbs/datetime v0.1.1 h1:KuV+F9tyq/hEnezmKZNGk8dzqMVsId6EpFVrQCfA3To=
@@ -423,8 +423,6 @@ github.com/tkrajina/go-reflector v0.5.4 h1:dS9aJEa/eYNQU/fwsb5CSiATOxcNyA/gG/A7a
 github.com/tkrajina/go-reflector v0.5.4/go.mod h1:9PyLgEOzc78ey/JmQQHbW8cQJ1oucLlNQsg8yFvkVk8=
 github.com/turbot/go-kit v0.4.0 h1:EdD7Bf2EGAjvHRGQxRiWpDawzZSk3T+eghqbj74qiSc=
 github.com/turbot/go-kit v0.4.0/go.mod h1:SBdPRngbEfYubiR81iAVtO43oPkg1+ASr+XxvgbH7/k=
-github.com/turbot/steampipe-plugin-sdk/v3 v3.3.2 h1:bBkefHcsYLJnaPgdEFBMF3Qc11ImSzeodGu4Hl2zfQ8=
-github.com/turbot/steampipe-plugin-sdk/v3 v3.3.2/go.mod h1:8r7CDDlrSUd5iUgPlvPa5ttlZ4OEFNMHm8fdwgnn5WM=
 github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7 h1:8DPSro6w7FKMig8d/jHF0rChN4tzEwnEKEZZLNp5DGA=
 github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7/go.mod h1:t1uwq6KylUr2CzIinxeTafoktJvX8yWmhaoWCJJc4YI=
 github.com/vmihailenco/msgpack v3.3.3+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=

@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/bigdatasourav/uptimerobotapi"
+	"github.com/turbot/go-kit/types"
 	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
 )
@@ -59,15 +60,24 @@ func listAlertContact(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydrat
 		return nil, err
 	}
 
-	// Integer type pointer as Limit take *int
-	var val *int
+	// Integer type pointer as Limit take *int. Its the threshold maxlimit.
+	var maxVal *int
 	a := 2
-	val = &a
+	maxVal = &a
+
+	// If the requested number of items is less than the paging max limit
+	// set the limit to that instead
+	val1 := d.QueryContext.Limit // extracting from query
+	if val1 != nil {
+		if *val1 < int64(*maxVal) {
+			maxVal = types.Int(int(*val1))
+		}
+	}
 
 	// creating a variable of sruct type
-	var params = uptimerobotapi.GetAlertContactsParams{Limit: val}
+	var params = uptimerobotapi.GetAlertContactsParams{Limit: maxVal}
 
-	contacts, err := conn.AlertContact.GetAlertContacts(params)
+	contacts, err := conn.AlertContact.GetAlertContacts(params) // request parameter
 	if err != nil {
 		plugin.Logger(ctx).Error("listAlertContact", "api_error", err)
 		return nil, err
