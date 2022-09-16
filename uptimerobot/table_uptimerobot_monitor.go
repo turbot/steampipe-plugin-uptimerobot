@@ -11,7 +11,7 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
 )
 
-func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
+func tableUptimeRobotMonitor(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
 		Name:        "uptimerobot_monitor",
 		Description: "UptimeRobot Monitor used to monitor websites.",

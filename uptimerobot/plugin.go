@@ -25,7 +25,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"uptimerobot_account":            tableUptimeRobotAccount(ctx),
 			"uptimerobot_alert_contact":      tableUptimeRobotAlertContact(ctx),
 			"uptimerobot_maintenance_window": tableUptimeRobotMaintenanceWindow(ctx),
-			"uptimerobot_monitor":            tableUptimerobotMonitor(ctx),
+			"uptimerobot_monitor":            tableUptimeRobotMonitor(ctx),
 		},
 	}
 	return p
