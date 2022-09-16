@@ -2,7 +2,7 @@
 organization: Turbot
 category: ["website monitoring"]
 icon_url: "/images/plugins/turbot/uptimerobot.svg"
-brand_color: "  "
+brand_color: "#3BD771"
 display_name: "UptimeRobot"
 short_name: "uptimerobot"
 description: "Steampipe plugin to query monitors, alert contacts and more from UptimeRobot."
