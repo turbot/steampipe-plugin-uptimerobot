@@ -1,6 +1,5 @@
 package uptimerobot
 
-// Reference : https://uptimerobot.com/api/
 import (
 	"context"
 
@@ -31,22 +30,22 @@ func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 			{
 				Name:        "friendly_name",
 				Type:        proto.ColumnType_STRING,
-				Description: "Friendly name of alert contact.",
-			},
-			{
-				Name:        "type",
-				Type:        proto.ColumnType_INT,
-				Description: "Type of alert contact.",
+				Description: "Friendly name of the alert contact.",
 			},
 			{
 				Name:        "status",
 				Type:        proto.ColumnType_INT,
-				Description: "Status of alert contact.",
+				Description: "Status of the alert contact.",
+			},
+			{
+				Name:        "type",
+				Type:        proto.ColumnType_INT,
+				Description: "Type of the alert contact.",
 			},
 			{
 				Name:        "value",
 				Type:        proto.ColumnType_STRING,
-				Description: "Value of alert contact.",
+				Description: "Value of the alert contact.",
 			},
 		},
 	}
