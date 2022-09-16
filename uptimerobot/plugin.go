@@ -7,7 +7,7 @@ import (
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
 )
 
-// Plugin creates this (steampipecloud) plugin
+// Plugin creates this (uptimerobot) plugin
 func Plugin(ctx context.Context) *plugin.Plugin {
 	p := &plugin.Plugin{
 		Name:             "steampipe-plugin-uptimerobot",
@@ -22,9 +22,10 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			Schema:      ConfigSchema,
 		},
 		TableMap: map[string]*plugin.Table{
+			"uptimerobot_account":            tableUptimeRobotAccount(ctx),
 			"uptimerobot_maintenance_window": tableUptimeRobotMaintenanceWindow(ctx),
+			// "uptimerobot_monitor": tableUptimeRobotMonitor(ctx),
 		},
 	}
-
 	return p
 }
