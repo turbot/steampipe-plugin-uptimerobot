@@ -10,7 +10,7 @@ import (
 func tableUptimeRobotAccount(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
 		Name:        "uptimerobot_account",
-		Description: "Retrieve information about your current account.",
+		Description: "UptimeRobot Account.",
 		List: &plugin.ListConfig{
 			Hydrate: listAccount,
 		},
@@ -31,11 +31,13 @@ func listAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData
 		plugin.Logger(ctx).Error("listAccount", "conection_error", err)
 		return nil, err
 	}
+
 	account, err := conn.Account.GetAccountDetails()
 	if err != nil {
 		plugin.Logger(ctx).Error("listAccount", "api_error", err)
 		return nil, err
 	}
+
 	d.StreamListItem(ctx, account.Account)
 	return nil, nil
 }
