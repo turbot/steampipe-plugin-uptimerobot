@@ -1,6 +1,6 @@
 # Table: uptimerobot_account
 
-Give details of the account in the uptimerobot.
+Provide account details of the uptimerobot.
 
 ## Examples
 
@@ -9,6 +9,7 @@ Give details of the account in the uptimerobot.
 ```sql
 select
   email,
+  user_id,
   monitor_limit,
   monitor_interval,
   up_monitors
@@ -16,12 +17,14 @@ from
   uptimerobot_account;
 ```
 
-### Get monitor limits of your account
+### Get monitor limits of your accounts
 
 ```sql
 select
   email,
-  monitor_limit
+  user_id,
+  monitor_limit,
+  monitor_interval
 from
   uptimerobot_account;
 ```
@@ -31,6 +34,9 @@ from
 ```sql
 select
   email,
+  user_id,
+  monitor_limit,
+  monitor_interval,
   down_monitors
 from
   uptimerobot_account
@@ -43,11 +49,12 @@ where
 ```sql
 select
   email,
+  user_id,
   monitor_limit,
   monitor_interval,
-  up_monitors
+  paused_monitors
 from
   uptimerobot_account
 where
  paused_monitors > 0;
- ```
+```
