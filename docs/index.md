@@ -65,10 +65,7 @@ connection "uptimerobot" {
 }
 ```
 
-- `api_key` - UptimeRobot API key. There are 3 types of api_keys for reaching the data:
-  - account-specific api_key which allows using all the API methods on all the monitors of an account.
-  - monitor-specific api_keys which allows using only the getMonitors method for the given monitor.
-  - read-only api_key which allows fetching data with all the get\* API endpoints.
+- `api_key` - UptimeRobot API key. Can also be set with the `UPTIMEROBOT_API_KEY` environment variable.
 
 ## Get involved
 
