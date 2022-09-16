@@ -13,7 +13,7 @@ import (
 func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
 		Name:        "uptimerobot_alert_contact",
-		Description: "UptimeRobot Alert Contact",
+		Description: "Alert Contacts are used to notify for up or down events.",
 		List: &plugin.ListConfig{
 			Hydrate: listAlertContacts,
 		},
@@ -35,12 +35,12 @@ func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 			{
 				Name:        "status",
 				Type:        proto.ColumnType_INT,
-				Description: "The status of the alert contact..",
+				Description: "The status of the alert contact. Possible values are 0 (not activated), 1 (paused), 2 (active).",
 			},
 			{
 				Name:        "type",
 				Type:        proto.ColumnType_INT,
-				Description: "The type of the alert contact notified.",
+				Description: "The type of the alert contact notified. See alertcontact>type parameter in https://uptimerobot.com/api/.",
 			},
 			{
 				Name:        "value",

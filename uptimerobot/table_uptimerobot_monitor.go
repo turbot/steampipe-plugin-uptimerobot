@@ -2,6 +2,7 @@ package uptimerobot
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/bigdatasourav/uptimerobotapi"
 	"github.com/turbot/go-kit/types"
@@ -13,7 +14,7 @@ import (
 func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
 		Name:        "uptimerobot_monitor",
-		Description: "UptimeRobot Monitor.",
+		Description: "UptimeRobot Monitor used to monitor websites.",
 		Get: &plugin.GetConfig{
 			KeyColumns: plugin.SingleColumn("id"),
 			Hydrate:    getMonitor,
@@ -31,7 +32,6 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 				},
 			},
 		},
-		// All columns
 		Columns: []*plugin.Column{
 			{
 				Name:        "id",
@@ -56,7 +56,7 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{
 				Name:        "type",
 				Type:        proto.ColumnType_INT,
-				Description: "the type of the monitor.",
+				Description: "the type of the monitor. See monitor>type parameter in https://uptimerobot.com/api/.",
 			},
 			{
 				Name:        "create_date_time",
@@ -81,8 +81,9 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			},
 			{
 				Name:        "is_group_main",
-				Type:        proto.ColumnType_INT,
+				Type:        proto.ColumnType_BOOL,
 				Description: "Specify if the monitor group is main.",
+				Transform:   transform.FromField("IsGroupMain").Transform(convertToBool),
 			},
 			{
 				Name:        "keyword_case_type",
@@ -142,17 +143,18 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 	}
 
 	input := uptimerobotapi.GetMonitorsParams{
-		//sets default limit
+		//set default limit
 		Limit: types.Int(50),
 	}
 
-	typeMonitor := d.KeyColumnQuals["type"].GetStringValue()
-	status := d.KeyColumnQuals["status"].GetStringValue()
-	if typeMonitor != "" {
-		input.Types = types.String(typeMonitor)
+	if q, ok := d.KeyColumnQuals["type"]; ok {
+		typeMonitor := q.GetInt64Value()
+		input.Types = types.String(strconv.FormatInt(typeMonitor, 10))
 	}
-	if status != "" {
-		input.Statuses = types.String(status)
+
+	if q, ok := d.KeyColumnQuals["status"]; ok {
+		status := q.GetInt64Value()
+		input.Statuses = types.String(strconv.FormatInt(status, 10))
 	}
 
 	limit := d.QueryContext.Limit

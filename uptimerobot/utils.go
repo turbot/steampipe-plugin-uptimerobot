@@ -20,3 +20,12 @@ func convertTimestamp(_ context.Context, d *transform.TransformData) (interface{
 	}
 	return nil, nil
 }
+
+func convertToBool(_ context.Context, d *transform.TransformData) (interface{}, error) {
+	temp := d.Value.(int)
+
+	if temp == 0 {
+		return false, nil
+	}
+	return true, nil
+}

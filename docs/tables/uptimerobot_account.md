@@ -29,32 +29,15 @@ from
   uptimerobot_account;
 ```
 
-### List accounts that have monitors down
+### List up/down/paused monitors
 
 ```sql
 select
   email,
   user_id,
-  monitor_limit,
-  monitor_interval,
-  down_monitors
-from
-  uptimerobot_account
-where
-  down_monitors > 0;
-```
-
-### List accounts that have paused monitors
-
-```sql
-select
-  email,
-  user_id,
-  monitor_limit,
-  monitor_interval,
+  up_monitors,
+  down_monitors,
   paused_monitors
 from
-  uptimerobot_account
-where
- paused_monitors > 0;
+  uptimerobot_account;
 ```
