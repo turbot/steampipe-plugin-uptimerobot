@@ -2,6 +2,10 @@
 
 Provide account details of the uptimerobot.
 
+## Reference
+
+https://uptimerobot.com/api/
+
 ## Examples
 
 ### Basic info

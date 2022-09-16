@@ -59,16 +59,18 @@ func listAlertContacts(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 		return nil, err
 	}
 
+	// Set default maximum value
 	maxVal := types.Int(50)
 
 	// If the requested number of items is less than the paging max limit set the limit to that instead
-	val1 := d.QueryContext.Limit
-	if val1 != nil {
-		if *val1 < 1 {
-			maxVal = types.Int(1)
-		}
-		if *val1 < int64(*maxVal) {
-			maxVal = types.Int(int(*val1))
+	limit := d.QueryContext.Limit
+	if limit != nil {
+		if *limit < int64(*maxVal) {
+			if *limit < 1 {
+				maxVal = types.Int(1)
+			} else {
+				maxVal = types.Int(int(*limit))
+			}
 		}
 	}
 

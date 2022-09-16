@@ -2,7 +2,9 @@
 
 Uptime Robot Alert Contact extracts a dataset with general informations for a set of contacts used to be alert in case of up/down of the given monitors for a particular user.
 
-Reference : https://uptimerobot.com/api/
+## Reference
+
+https://uptimerobot.com/api/
 
 ## Examples
 

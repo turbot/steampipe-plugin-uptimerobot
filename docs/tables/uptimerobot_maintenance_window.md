@@ -1,6 +1,6 @@
 # Table: uptimerobot_maintenance_window
 
-Give details of maintenance window in the uptimerobot.
+Provides details of maintenance window in the uptimerobot.
 
 ## Reference
 
@@ -21,6 +21,7 @@ from
 ```
 
 ### List the paused maintenance windows
+
 ```sql
 select
   id,
@@ -32,7 +33,7 @@ where
   status = 0;
 ```
 
-### List the maintenance windows that have duartion more than 60 minutes 
+### List the maintenance windows that have duartion more than 60 minutes
 
 ```sql
 select
@@ -56,4 +57,4 @@ from
   uptimerobot_maintenance_window
 where
   type = 2;
- ```
+```

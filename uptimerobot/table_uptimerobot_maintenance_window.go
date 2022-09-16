@@ -27,13 +27,13 @@ func tableUptimeRobotMaintenanceWindow(ctx context.Context) *plugin.Table {
 		},
 		Columns: []*plugin.Column{
 			{Name: "id", Type: proto.ColumnType_INT, Description: "Unique id of the maintenance window."},
-			{Name: "user", Type: proto.ColumnType_INT, Description: "User of the maintenance window."},
-			{Name: "type", Type: proto.ColumnType_INT, Description: "Type of the maintenance window."},
 			{Name: "friendly_name", Type: proto.ColumnType_STRING, Description: "Friendly name of the maintenance window."},
+			{Name: "status", Type: proto.ColumnType_INT, Description: "Status of the maintenance window."},
+			{Name: "type", Type: proto.ColumnType_INT, Description: "Type of the maintenance window."},
+			{Name: "user", Type: proto.ColumnType_INT, Description: "User of the maintenance window."},
 			{Name: "start_time", Type: proto.ColumnType_STRING, Description: "Start time of the maintenance window."},
 			{Name: "duration", Type: proto.ColumnType_INT, Description: "Duration of the maintenance window."},
 			{Name: "value", Type: proto.ColumnType_STRING, Description: "Value of the maintenance window."},
-			{Name: "status", Type: proto.ColumnType_INT, Description: "Status of the maintenance window."},
 		},
 	}
 }
