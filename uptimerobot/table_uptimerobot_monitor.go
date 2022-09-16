@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/bigdatasourav/uptimerobotapi"
+	"github.com/turbot/go-kit/types"
 	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
@@ -34,7 +35,7 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{Name: "http_password", Type: proto.ColumnType_STRING, Description: "The http-password for password-protected web pages."},
 			{Name: "interval", Type: proto.ColumnType_INT, Description: "The interval for the monitoring check ."},
 			{Name: "timeout", Type: proto.ColumnType_INT, Description: "The timeout for the monitoring check ."},
-			{Name: "create_datetime", Type: proto.ColumnType_TIMESTAMP, Description: "The creation time for the monitor.",Transform: transform.FromField("CreateDatetime.Time")},
+			{Name: "create_datetime", Type: proto.ColumnType_TIMESTAMP, Description: "The creation time for the monitor.", Transform: transform.FromField("CreateDatetime.Time")},
 			{Name: "monitor_group", Type: proto.ColumnType_INT, Description: "The groups for monitors."},
 			{Name: "is_group_main", Type: proto.ColumnType_INT, Description: "The main groups for monitors."},
 			{Name: "alert_contacts", Type: proto.ColumnType_JSON, Description: "The alert contacts of the monitors."},
@@ -46,12 +47,23 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 }
 
 func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+	limit := d.QueryContext.Limit
+	input := uptimerobotapi.GetMonitorsParams{Limit: types.Int(50)}
+	if d.QueryContext.Limit != nil {
+		if *limit < int64(*input.Limit) {
+			if *limit < 1 {
+				input.Limit = types.Int(1)
+			} else {
+				input.Limit = types.Int(int(*limit))
+			}
+		}
+	}
 	conn, err := connect(ctx, d)
 	if err != nil {
 		plugin.Logger(ctx).Error("listMonitor", "connection_error", err)
 		return nil, err
 	}
-	monitors, err := conn.Monitor.GetMonitors(uptimerobotapi.GetMonitorsParams{})
+	monitors, err := conn.Monitor.GetMonitors(input)
 	if err != nil {
 		plugin.Logger(ctx).Error("listMonitor", "api_error", err)
 		return nil, err
@@ -69,10 +81,17 @@ func getMonitors(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData
 		return nil, err
 	}
 	id := d.KeyColumnQuals["id"].GetStringValue()
+	if id == "" {
+		return nil, nil
+	}
 	result, err := conn.Monitor.GetMonitors(uptimerobotapi.GetMonitorsParams{Monitors: &id})
 	if err != nil {
 		plugin.Logger(ctx).Error("getMonitor", "api_error", err)
 		return nil, err
 	}
-	return result, nil
+	if len(result.Monitors) > 0 {
+		return result.Monitors[0], nil
+	}
+
+	return nil, nil
 }
