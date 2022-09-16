@@ -91,11 +91,13 @@ func listAlertContacts(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 func getAlertContact(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("getAlertPolicy", "connection_error", err)
+		plugin.Logger(ctx).Error("getAlertContact", "connection_error", err)
 		return nil, err
 	}
 
 	id := d.KeyColumnQuals["id"].GetStringValue()
+
+	// Check if id is empty.
 	if id == "" {
 		return nil, nil
 	}
