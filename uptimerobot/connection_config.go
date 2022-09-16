@@ -5,7 +5,7 @@ import (
 	"errors"
 	"os"
 
-	uptimerobotapi "github.com/bigdatasourav/uptimerobotapi"
+	"github.com/bigdatasourav/uptimerobotapi"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/schema"
 )

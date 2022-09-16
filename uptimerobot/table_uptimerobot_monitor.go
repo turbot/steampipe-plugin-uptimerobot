@@ -19,7 +19,7 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 		},
 		Get: &plugin.GetConfig{
 			KeyColumns: plugin.SingleColumn("id"),
-			Hydrate:    getMonitors,
+			Hydrate:    getMonitor,
 		},
 		Columns: []*plugin.Column{
 			{Name: "id", Type: proto.ColumnType_STRING, Description: "The unique account id for monitors."},
@@ -47,8 +47,14 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 }
 
 func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	limit := d.QueryContext.Limit
+	conn, err := connect(ctx, d)
+	if err != nil {
+		plugin.Logger(ctx).Error("listMonitor", "connection_error", err)
+		return nil, err
+	}
+
 	input := uptimerobotapi.GetMonitorsParams{Limit: types.Int(50)}
+	limit := d.QueryContext.Limit
 	if d.QueryContext.Limit != nil {
 		if *limit < int64(*input.Limit) {
 			if *limit < 1 {
@@ -58,11 +64,7 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 			}
 		}
 	}
-	conn, err := connect(ctx, d)
-	if err != nil {
-		plugin.Logger(ctx).Error("listMonitor", "connection_error", err)
-		return nil, err
-	}
+
 	monitors, err := conn.Monitor.GetMonitors(input)
 	if err != nil {
 		plugin.Logger(ctx).Error("listMonitor", "api_error", err)
@@ -74,7 +76,7 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 	return nil, nil
 }
 
-func getMonitors(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
+func getMonitor(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
 		plugin.Logger(ctx).Error("getMonitor", "connection_error", err)
