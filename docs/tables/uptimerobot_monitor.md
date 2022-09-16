@@ -2,10 +2,6 @@
 
 UptimeRobot Monitors checks whether our website is down or not. It checks repeatedly after configured interval time so we can get an instant notification in case things go wrong.
 
-## Reference
-
-https://uptimerobot.com/api/
-
 ## Examples
 
 ### Basic Info
@@ -20,7 +16,7 @@ from
   uptimerobot_monitor;
 ```
 
-### List the monitors with status paused
+### List paused monitors
 
 ```sql
 select
@@ -33,7 +29,7 @@ where
   status = 0;
 ```
 
-### List monitors with type heartbeat
+### List heartbeat monitors
 
 ```sql
 select

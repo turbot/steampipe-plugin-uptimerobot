@@ -58,14 +58,15 @@ Installing the latest uptimerobot plugin will create a config file (`~/.steampip
 connection "uptimerobot" {
   plugin       = "uptimerobot"
 
-  # API Key for your UptimeRobot account
-  # Reference: https://uptimerobot.com/api/
-  # Env variable: UPTIMEROBOT_API_KEY
-  # api_key = "YOUR_UPTIMEROBOT_ACCESS_KEY"
+  # API key for your UptimeRobot account.
+  # We recommend creating a read-only api_key, for more information on the
+  # different types, please see https://uptimerobot.com/api/.
+  # Can also be set with the UPTIMEROBOT_API_KEY environment variable.
+  # api_key = "u1857235-592bd3c445thisisafakekey"
 }
 ```
 
-- `api_key` - API key from UptimeRobot.
+- `api_key` - UptimeRobot API key. Can also be set with the `UPTIMEROBOT_API_KEY` environment variable.
 
 ## Get involved
 

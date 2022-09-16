@@ -1,10 +1,6 @@
 # Table: uptimerobot_maintenance_window
 
-Provides details of maintenance window in the uptimerobot.
-
-## Reference
-
-https://uptimerobot.com/api/
+Provides details of maintenance window in the UptimeRobot.
 
 ## Examples
 
@@ -20,7 +16,7 @@ from
   uptimerobot_maintenance_window;
 ```
 
-### List the paused maintenance windows
+### List paused maintenance windows
 
 ```sql
 select
@@ -33,7 +29,7 @@ where
   status = 0;
 ```
 
-### List the maintenance windows that have duartion more than 60 minutes
+### List maintenance windows with duration longer than than 60 minutes
 
 ```sql
 select
@@ -46,7 +42,7 @@ where
   duration > 60;
 ```
 
-### List the maintenance windows that are checked on daily basis
+### List maintenance windows that are checked on daily basis
 
 ```sql
 select

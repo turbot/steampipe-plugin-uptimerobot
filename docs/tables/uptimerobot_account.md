@@ -1,10 +1,6 @@
 # Table: uptimerobot_account
 
-Provide account details of the uptimerobot.
-
-## Reference
-
-https://uptimerobot.com/api/
+UptimeRobot acounts can be used to monitor websites, keywords, pings, ports, and more.
 
 ## Examples
 
@@ -21,7 +17,7 @@ from
   uptimerobot_account;
 ```
 
-### Get monitor limits of your accounts
+### Get monitor limits of the account
 
 ```sql
 select
@@ -33,32 +29,15 @@ from
   uptimerobot_account;
 ```
 
-### List accounts that have monitors down
+### List up, down, and paused monitors in the account
 
 ```sql
 select
   email,
   user_id,
-  monitor_limit,
-  monitor_interval,
-  down_monitors
-from
-  uptimerobot_account
-where
-  down_monitors > 0;
-```
-
-### List accounts that have paused monitors
-
-```sql
-select
-  email,
-  user_id,
-  monitor_limit,
-  monitor_interval,
+  up_monitors,
+  down_monitors,
   paused_monitors
 from
-  uptimerobot_account
-where
- paused_monitors > 0;
+  uptimerobot_account;
 ```
