@@ -24,7 +24,6 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 		TableMap: map[string]*plugin.Table{
 			"uptimerobot_account":            tableUptimeRobotAccount(ctx),
 			"uptimerobot_maintenance_window": tableUptimeRobotMaintenanceWindow(ctx),
-			// "uptimerobot_monitor": tableUptimeRobotMonitor(ctx),
 		},
 	}
 	return p
