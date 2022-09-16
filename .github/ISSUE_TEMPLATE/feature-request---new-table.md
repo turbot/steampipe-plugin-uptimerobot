@@ -1,7 +1,7 @@
 ---
 name: Feature request - New table
 about: Suggest a new table for this project
-title: Add table uptimerobot_<service>_<resource>
+title: Add table uptimerobot_<resource>
 labels: enhancement, new table
 assignees: ""
 ---
