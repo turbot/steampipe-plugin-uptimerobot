@@ -25,7 +25,7 @@ func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 			{
 				Name:        "id",
 				Type:        proto.ColumnType_STRING,
-				Description: "Unique id of the alert contact.",
+				Description: "The ID of the alert contact.",
 			},
 			{
 				Name:        "friendly_name",
@@ -35,17 +35,17 @@ func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 			{
 				Name:        "status",
 				Type:        proto.ColumnType_INT,
-				Description: "Status of the alert contact.",
+				Description: "The status of the alert contact..",
 			},
 			{
 				Name:        "type",
 				Type:        proto.ColumnType_INT,
-				Description: "Type of the alert contact.",
+				Description: "The type of the alert contact notified.",
 			},
 			{
 				Name:        "value",
 				Type:        proto.ColumnType_STRING,
-				Description: "Value of the alert contact.",
+				Description: "Alert contact's email address, phone, username, url or api key depending on the alert contact type.",
 			},
 		},
 	}
@@ -84,6 +84,11 @@ func listAlertContacts(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 
 	for _, item := range contacts.AlertContacts {
 		d.StreamListItem(ctx, item)
+
+		// Context can be cancelled due to manual cancellation or the limit has been hit
+		if d.QueryStatus.RowsRemaining(ctx) == 0 {
+			return nil, nil
+		}
 	}
 
 	return nil, nil

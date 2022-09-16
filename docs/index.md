@@ -58,14 +58,17 @@ Installing the latest uptimerobot plugin will create a config file (`~/.steampip
 connection "uptimerobot" {
   plugin       = "uptimerobot"
 
-  # API Key for your UptimeRobot account
+  # API key for your UptimeRobot account.
   # Reference: https://uptimerobot.com/api/
-  # Env variable: UPTIMEROBOT_API_KEY
-  # api_key = "YOUR_UPTIMEROBOT_ACCESS_KEY"
+  # Can also be set with the UPTIMEROBOT_API_KEY environment variable.
+  # api_key = "u1857235-*********592bd3c445"
 }
 ```
 
-- `api_key` - API key from UptimeRobot.
+- `api_key` - UptimeRobot API key. There are 3 types of api_keys for reaching the data:
+  - account-specific api_key which allows using all the API methods on all the monitors of an account.
+  - monitor-specific api_keys which allows using only the getMonitors method for the given monitor.
+  - read-only api_key which allows fetching data with all the get\* API endpoints.
 
 ## Get involved
 

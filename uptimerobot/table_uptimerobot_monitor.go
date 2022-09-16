@@ -36,7 +36,7 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{
 				Name:        "id",
 				Type:        proto.ColumnType_STRING,
-				Description: "The unique account id of the monitor.",
+				Description: "The ID of the monitor (can be used for monitor-specific requests).",
 			},
 			{
 				Name:        "friendly_name",
@@ -46,38 +46,38 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{
 				Name:        "url",
 				Type:        proto.ColumnType_STRING,
-				Description: "The url of the monitored website.",
+				Description: "the URL/IP of the monitor.",
 			},
 			{
 				Name:        "status",
 				Type:        proto.ColumnType_INT,
-				Description: "The status of the monitored website.",
+				Description: "The status of the monitor. When used with the editMonitor method 0 (to pause) or 1 (to start) can be sent.",
 			},
 			{
 				Name:        "type",
 				Type:        proto.ColumnType_INT,
-				Description: "Type of the website monitored.",
+				Description: "the type of the monitor.",
 			},
 			{
-				Name:        "create_datetime",
-				Type:        proto.ColumnType_STRING,
-				Description: "The creation time for the monitor.",
+				Name:        "create_date_time",
+				Type:        proto.ColumnType_TIMESTAMP,
+				Description: "The create time for the monitor.",
 				Transform:   transform.FromField("CreateDatetime").Transform(convertTimestamp),
 			},
 			{
 				Name:        "http_username",
 				Type:        proto.ColumnType_STRING,
-				Description: "The http-username for password-protected web pages.",
+				Description: "It used for password-protected web pages. Available for HTTP and keyword monitoring.",
 			},
 			{
 				Name:        "http_password",
 				Type:        proto.ColumnType_STRING,
-				Description: "The http-password for password-protected web pages.",
+				Description: "It used for password-protected web pages. Available for HTTP and keyword monitoring.",
 			},
 			{
 				Name:        "interval",
 				Type:        proto.ColumnType_INT,
-				Description: "The interval for the monitoring check.",
+				Description: "The interval for the monitoring check (300 seconds by default).",
 			},
 			{
 				Name:        "is_group_main",
@@ -87,27 +87,27 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 			{
 				Name:        "keyword_case_type",
 				Type:        proto.ColumnType_INT,
-				Description: "The keyword case of the monitor.",
+				Description: "It used only for Keyword monitoring (monitor>type = 2) if set the keyword value will be checked as case sensitive or case insensitive according the selection. (case sensitive by default).",
 			},
 			{
 				Name:        "keyword_type",
 				Type:        proto.ColumnType_STRING,
-				Description: "The keyword type of the monitor.",
+				Description: "It used only for Keyword monitoring (monitor>type = 2) and shows if the monitor will be flagged as down when the keyword exists or not exists.",
 			},
 			{
 				Name:        "keyword_value",
 				Type:        proto.ColumnType_STRING,
-				Description: "The keyword value of the monitor.",
+				Description: "The value of the keyword.",
 			},
 			{
 				Name:        "monitor_group",
 				Type:        proto.ColumnType_INT,
-				Description: "The groups for the monitor.",
+				Description: "Number of the monitor group.",
 			},
 			{
 				Name:        "sub_type",
 				Type:        proto.ColumnType_STRING,
-				Description: "Sub type of the website monitored.",
+				Description: "It used only for Port monitoring (monitor>type = 4) and shows which pre-defined port/service is monitored or if a custom port is monitored.",
 			},
 			{
 				Name:        "timeout",
@@ -140,22 +140,21 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 		plugin.Logger(ctx).Error("listMonitor", "connection_error", err)
 		return nil, err
 	}
+
 	input := uptimerobotapi.GetMonitorsParams{
 		//sets default limit
 		Limit: types.Int(50),
 	}
+
 	typeMonitor := d.KeyColumnQuals["type"].GetStringValue()
 	status := d.KeyColumnQuals["status"].GetStringValue()
 	if typeMonitor != "" {
-		input = uptimerobotapi.GetMonitorsParams{
-			Types: &typeMonitor,
-		}
+		input.Types = types.String(typeMonitor)
 	}
 	if status != "" {
-		input = uptimerobotapi.GetMonitorsParams{
-			Statuses: &status,
-		}
+		input.Statuses = types.String(status)
 	}
+
 	limit := d.QueryContext.Limit
 	if d.QueryContext.Limit != nil {
 		if *limit < int64(*input.Limit) {
@@ -166,6 +165,7 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 			}
 		}
 	}
+
 	monitors, err := conn.Monitor.GetMonitors(input)
 	if err != nil {
 		plugin.Logger(ctx).Error("listMonitor", "api_error", err)
@@ -173,7 +173,13 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 	}
 	for _, monitor := range monitors.Monitors {
 		d.StreamListItem(ctx, monitor)
+
+		// Context can be cancelled due to manual cancellation or the limit has been hit
+		if d.QueryStatus.RowsRemaining(ctx) == 0 {
+			return nil, nil
+		}
 	}
+
 	return nil, nil
 }
 

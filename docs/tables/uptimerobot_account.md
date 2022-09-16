@@ -1,10 +1,6 @@
 # Table: uptimerobot_account
 
-Provide account details of the uptimerobot.
-
-## Reference
-
-https://uptimerobot.com/api/
+Provide account details of the UptimeRobot.
 
 ## Examples
 

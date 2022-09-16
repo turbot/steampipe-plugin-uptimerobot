@@ -12,33 +12,33 @@ func tableUptimeRobotAccount(ctx context.Context) *plugin.Table {
 		Name:        "uptimerobot_account",
 		Description: "UptimeRobot Account.",
 		List: &plugin.ListConfig{
-			Hydrate: listAccount,
+			Hydrate: listAccounts,
 		},
 		Columns: []*plugin.Column{
-			{Name: "email", Type: proto.ColumnType_STRING, Description: "Email with which the account is registered."},
-			{Name: "user_id", Type: proto.ColumnType_INT, Description: "User Id of the account."},
+			{Name: "email", Type: proto.ColumnType_STRING, Description: "The account e-mail."},
+			{Name: "user_id", Type: proto.ColumnType_INT, Description: "User ID of the account."},
 			{Name: "first_name", Type: proto.ColumnType_STRING, Description: "First name with which the account is registered."},
 			{Name: "sms_credits", Type: proto.ColumnType_INT, Description: "The SMS credits limit of the account."},
-			{Name: "monitor_limit", Type: proto.ColumnType_INT, Description: "Maximum number of monitors allowed for the account."},
-			{Name: "monitor_interval", Type: proto.ColumnType_INT, Description: "Monitor interval for the account."},
-			{Name: "up_monitors", Type: proto.ColumnType_INT, Description: "Number of monitors up in the account."},
-			{Name: "down_monitors", Type: proto.ColumnType_INT, Description: "Number of monitors down in the account."},
-			{Name: "paused_monitors", Type: proto.ColumnType_INT, Description: "Number of monitors paused in the account."},
-			{Name: "total_monitors_count", Type: proto.ColumnType_INT, Description: "Total number of monitors running in the account."},
+			{Name: "monitor_limit", Type: proto.ColumnType_INT, Description: "The max number of monitors that can be created for the account."},
+			{Name: "monitor_interval", Type: proto.ColumnType_INT, Description: "The min monitoring interval (in seconds) supported by the account."},
+			{Name: "up_monitors", Type: proto.ColumnType_INT, Description: "The number of up monitors."},
+			{Name: "down_monitors", Type: proto.ColumnType_INT, Description: "The number of down monitors."},
+			{Name: "paused_monitors", Type: proto.ColumnType_INT, Description: "The number of paused monitors."},
+			{Name: "total_monitors_count", Type: proto.ColumnType_INT, Description: "Total number of monitors running."},
 		},
 	}
 }
 
-func listAccount(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
+func listAccounts(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
-		plugin.Logger(ctx).Error("listAccount", "conection_error", err)
+		plugin.Logger(ctx).Error("listAccounts", "conection_error", err)
 		return nil, err
 	}
 
 	account, err := conn.Account.GetAccountDetails()
 	if err != nil {
-		plugin.Logger(ctx).Error("listAccount", "api_error", err)
+		plugin.Logger(ctx).Error("listAccounts", "api_error", err)
 		return nil, err
 	}
 

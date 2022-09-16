@@ -1,10 +1,6 @@
 # Table: uptimerobot_alert_contact
 
-Uptime Robot Alert Contact extracts a dataset with general informations for a set of contacts used to be alert in case of up/down of the given monitors for a particular user.
-
-## Reference
-
-https://uptimerobot.com/api/
+UptimeRobot Alert Contact extracts a dataset with general information for a set of contacts used to be alert in case of up/down of the given monitors for a particular user.
 
 ## Examples
 
@@ -21,7 +17,7 @@ from
   uptimerobot_alert_contact;
 ```
 
-### Get alert contact with type telegram
+### List Telegram alert contacts
 
 ```sql
 select
