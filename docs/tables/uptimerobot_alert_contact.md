@@ -44,5 +44,5 @@ select
 from
   uptimerobot_alert_contact
 where
-  status = '0';
+  status = 0;
 ```

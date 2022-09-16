@@ -1,5 +1,6 @@
 package uptimerobot
 
+// Reference : https://uptimerobot.com/api/
 import (
 	"context"
 
