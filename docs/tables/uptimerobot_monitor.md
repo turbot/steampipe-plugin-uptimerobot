@@ -1,6 +1,6 @@
 # Table:
 
-UptimeRobot Monitors checks  whether  our website is down or not ,it is checked in every minute so that we can get an instant notification in case things go wrong.
+UptimeRobot Monitors checks whether our website is down or not. It checks after configured interval time so we can get an instant notification in case things go wrong.
 
 ## Examples
 
@@ -25,10 +25,11 @@ select
   url
 from
   uptimerobot_monitor
-where friendly_name='test';
+where 
+  friendly_name = 'test';
 ```
 
-### List the monitor with status paused 
+### List the monitors with status paused 
 
 ```sql
 select
@@ -37,5 +38,19 @@ select
   url
 from
   uptimerobot_monitor
-where status=0;
+where 
+  status = 0;
+```
+
+### List monitors with type Heartbeat
+
+```sql
+select
+  id,
+  type,
+  url
+from
+  uptimerobot_monitor
+where
+  type = 5;
 ```
