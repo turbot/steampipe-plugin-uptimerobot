@@ -83,7 +83,7 @@ func tableUptimerobotMonitor(ctx context.Context) *plugin.Table {
 				Name:        "is_group_main",
 				Type:        proto.ColumnType_BOOL,
 				Description: "Specify if the monitor group is main.",
-				Transform:   transform.FromField("IsGroupMain").Transform(convertToBool),
+				Transform:   transform.FromField("IsGroupMain").Transform(convertIntToBool),
 			},
 			{
 				Name:        "keyword_case_type",
