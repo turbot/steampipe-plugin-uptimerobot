@@ -131,6 +131,12 @@ func tableUptimeRobotMonitor(ctx context.Context) *plugin.Table {
 				Description: "The ssl of the monitor.",
 				Transform:   transform.FromField("SSL"),
 			},
+			{
+				Name:        "raw",
+				Type:        proto.ColumnType_JSON,
+				Description: "Raw data.",
+				Transform:   transform.FromValue(),
+			},
 		},
 	}
 }
