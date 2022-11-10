@@ -168,18 +168,26 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 		}
 	}
 
-	monitors, err := conn.Monitor.GetMonitors(input)
-	if err != nil {
-		plugin.Logger(ctx).Error("listMonitor", "api_error", err)
-		return nil, err
-	}
-	for _, monitor := range monitors.Monitors {
-		d.StreamListItem(ctx, monitor)
-
-		// Context can be cancelled due to manual cancellation or the limit has been hit
-		if d.QueryStatus.RowsRemaining(ctx) == 0 {
-			return nil, nil
+	count := 0
+	for {
+		monitors, err := conn.Monitor.GetMonitors(input)
+		if err != nil {
+			plugin.Logger(ctx).Error("listMonitor", "api_error", err)
+			return nil, err
 		}
+		for _, monitor := range monitors.Monitors {
+			d.StreamListItem(ctx, monitor)
+
+			// Context can be cancelled due to manual cancellation or the limit has been hit
+			if d.QueryStatus.RowsRemaining(ctx) == 0 {
+				return nil, nil
+			}
+		}
+		count = count + len(monitors.Monitors)
+		if count >= monitors.Pagination.Total {
+			break
+		}
+		input.Offset = count
 	}
 
 	return nil, nil

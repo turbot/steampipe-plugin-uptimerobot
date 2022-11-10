@@ -76,19 +76,27 @@ func listAlertContacts(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 
 	var params = uptimerobotapi.GetAlertContactsParams{Limit: maxVal}
 
-	contacts, err := conn.AlertContact.GetAlertContacts(params)
-	if err != nil {
-		plugin.Logger(ctx).Error("listAlertContact", "api_error", err)
-		return nil, err
-	}
-
-	for _, item := range contacts.AlertContacts {
-		d.StreamListItem(ctx, item)
-
-		// Context can be cancelled due to manual cancellation or the limit has been hit
-		if d.QueryStatus.RowsRemaining(ctx) == 0 {
-			return nil, nil
+	count := 0
+	for {
+		contacts, err := conn.AlertContact.GetAlertContacts(params)
+		if err != nil {
+			plugin.Logger(ctx).Error("listAlertContact", "api_error", err)
+			return nil, err
 		}
+
+		for _, item := range contacts.AlertContacts {
+			d.StreamListItem(ctx, item)
+
+			// Context can be cancelled due to manual cancellation or the limit has been hit
+			if d.QueryStatus.RowsRemaining(ctx) == 0 {
+				return nil, nil
+			}
+		}
+		count = count + len(contacts.AlertContacts)
+		if count >= contacts.Total {
+			break
+		}
+		params.Offset = types.Int(count)
 	}
 
 	return nil, nil
