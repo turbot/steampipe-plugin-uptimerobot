@@ -4,10 +4,10 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/turbot/uptimerobotapi"
 	"github.com/turbot/go-kit/types"
 	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/uptimerobotapi"
 )
 
 func tableUptimeRobotMaintenanceWindow(ctx context.Context) *plugin.Table {
@@ -77,7 +77,7 @@ func listMaintenanceWindows(ctx context.Context, d *plugin.QueryData, _ *plugin.
 				return nil, nil
 			}
 		}
-		count = count + len(mw.MWindows)
+		count += len(mw.MWindows)
 		if count >= mw.Pagination.Total {
 			break
 		}

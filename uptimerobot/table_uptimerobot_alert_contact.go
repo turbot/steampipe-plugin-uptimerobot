@@ -92,7 +92,7 @@ func listAlertContacts(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 				return nil, nil
 			}
 		}
-		count = count + len(contacts.AlertContacts)
+		count += len(contacts.AlertContacts)
 		if count >= contacts.Total {
 			break
 		}
