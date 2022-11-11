@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/bigdatasourav/uptimerobotapi"
+	"github.com/turbot/go-kit/types"
 	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
 )
@@ -45,7 +46,10 @@ func listMaintenanceWindows(ctx context.Context, d *plugin.QueryData, _ *plugin.
 		plugin.Logger(ctx).Error("listMaintenanceWindows", "connection_error", err)
 		return nil, err
 	}
-	var params = uptimerobotapi.GetMWindowParams{}
+	var params = uptimerobotapi.GetMWindowParams{
+		//set default limit
+		Limit: types.Int(50),
+	}
 
 	if q, ok := d.KeyColumnQuals["type"]; ok {
 		windowType := q.GetInt64Value()
@@ -57,19 +61,28 @@ func listMaintenanceWindows(ctx context.Context, d *plugin.QueryData, _ *plugin.
 		params.Duration = strconv.FormatInt(duration, 10)
 	}
 
-	mw, err := conn.MWindow.GetMWindows(params)
-	if err != nil {
-		plugin.Logger(ctx).Error("listMaintenanceWindows", "api_error", err)
-		return nil, err
-	}
-
-	for _, element := range mw.MWindows {
-		d.StreamListItem(ctx, element)
-
-		// Context can be cancelled due to manual cancellation or the limit has been hit
-		if d.QueryStatus.RowsRemaining(ctx) == 0 {
-			return nil, nil
+	count := 0
+	for {
+		mw, err := conn.MWindow.GetMWindows(params)
+		if err != nil {
+			plugin.Logger(ctx).Error("listMaintenanceWindows", "api_error", err)
+			return nil, err
 		}
+
+		for _, element := range mw.MWindows {
+			d.StreamListItem(ctx, element)
+
+			// Context can be cancelled due to manual cancellation or the limit has been hit
+			if d.QueryStatus.RowsRemaining(ctx) == 0 {
+				return nil, nil
+			}
+		}
+		count = count + len(mw.MWindows)
+		if count >= mw.Pagination.Total {
+			break
+		}
+		params.Offset = count
 	}
+
 	return nil, nil
 }

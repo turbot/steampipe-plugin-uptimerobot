@@ -4,7 +4,7 @@ go 1.19
 
 require github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7
 
-require github.com/bigdatasourav/uptimerobotapi v0.3.0
+require github.com/bigdatasourav/uptimerobotapi v0.5.0
 
 require (
 	github.com/XiaoMi/pegasus-go-client v0.0.0-20210427083443-f3b6b08bc4c2 // indirect
