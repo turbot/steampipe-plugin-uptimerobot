@@ -4,11 +4,11 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/bigdatasourav/uptimerobotapi"
 	"github.com/turbot/go-kit/types"
 	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/uptimerobotapi"
 )
 
 func tableUptimeRobotMonitor(ctx context.Context) *plugin.Table {

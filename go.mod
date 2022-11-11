@@ -2,9 +2,10 @@ module github.com/turbot/steampipe-plugin-uptimerobot
 
 go 1.19
 
-require github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7
-
-require github.com/bigdatasourav/uptimerobotapi v0.5.0
+require (
+	github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7
+	github.com/turbot/uptimerobotapi v0.0.1
+)
 
 require (
 	github.com/XiaoMi/pegasus-go-client v0.0.0-20210427083443-f3b6b08bc4c2 // indirect
@@ -13,7 +14,7 @@ require (
 	github.com/allegro/bigcache/v3 v3.0.2 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/bradfitz/gomemcache v0.0.0-20220106215444-fb4bf637b56d // indirect
+	github.com/bradfitz/gomemcache v0.0.0-20220106215444-fb4bf637b56d // indirects
 	github.com/btubbs/datetime v0.1.1 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
