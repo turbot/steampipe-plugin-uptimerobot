@@ -1,3 +1,10 @@
+## v0.0.2 [2022-11-11]
+
+_Bug fixes_
+
+- Fixed paging in `uptimerobot_alert_contact`, `uptimerobot_maintenance_window` and `uptimerobot_monitor` tables. ([#13](https://github.com/turbot/steampipe-plugin-uptimerobot/pull/13))
+- Fixed `create_date_time` column returning incorrect date in `uptimerobot_monitor` table.
+
 ## v0.0.1 [2022-09-16]
 
 _What's new?_
