@@ -1,3 +1,10 @@
+## v0.0.3 [2022-11-11]
+
+_Bug fixes_
+
+- Fixed `ssl` column not returning data in `uptimerobot_monitor` table.
+- Removed unused columns `alert_contacts` and `logs` in `uptimerobot_monitor` table.
+
 ## v0.0.2 [2022-11-11]
 
 _Bug fixes_
