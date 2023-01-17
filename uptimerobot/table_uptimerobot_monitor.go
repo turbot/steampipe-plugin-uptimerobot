@@ -183,7 +183,7 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 				return nil, nil
 			}
 		}
-		count = count + len(monitors.Monitors)
+		count += len(monitors.Monitors)
 		if count >= monitors.Pagination.Total {
 			break
 		}
