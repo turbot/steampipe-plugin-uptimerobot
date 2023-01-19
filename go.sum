@@ -421,8 +421,8 @@ github.com/tkrajina/go-reflector v0.5.4 h1:dS9aJEa/eYNQU/fwsb5CSiATOxcNyA/gG/A7a
 github.com/tkrajina/go-reflector v0.5.4/go.mod h1:9PyLgEOzc78ey/JmQQHbW8cQJ1oucLlNQsg8yFvkVk8=
 github.com/turbot/go-kit v0.4.0 h1:EdD7Bf2EGAjvHRGQxRiWpDawzZSk3T+eghqbj74qiSc=
 github.com/turbot/go-kit v0.4.0/go.mod h1:SBdPRngbEfYubiR81iAVtO43oPkg1+ASr+XxvgbH7/k=
-github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7 h1:8DPSro6w7FKMig8d/jHF0rChN4tzEwnEKEZZLNp5DGA=
-github.com/turbot/steampipe-plugin-sdk/v4 v4.1.7/go.mod h1:t1uwq6KylUr2CzIinxeTafoktJvX8yWmhaoWCJJc4YI=
+github.com/turbot/steampipe-plugin-sdk/v4 v4.1.9 h1:4yV/tR22tAQ0ZSCcj1cSAos/orhDH3/1pEHvYOCnxUc=
+github.com/turbot/steampipe-plugin-sdk/v4 v4.1.9/go.mod h1:t1uwq6KylUr2CzIinxeTafoktJvX8yWmhaoWCJJc4YI=
 github.com/turbot/uptimerobotapi v0.0.1 h1:sL3BxQ4IlIIMHFd/fQKOPnS5vyH5OQZ4KSMO/gg3eIQ=
 github.com/turbot/uptimerobotapi v0.0.1/go.mod h1:kD1iwh/2CMrhnkOttp57H7o7tfCPQ4JvU6YBqXDohTk=
 github.com/vmihailenco/msgpack v3.3.3+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
