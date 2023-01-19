@@ -1,3 +1,13 @@
+## v0.1.0 [2023-01-19]
+
+_Enhancements_
+
+- Added columns `alert_contacts` and `logs` to `uptimerobot_monitor` table. ([#15](https://github.com/turbot/steampipe-plugin-uptimerobot/pull/15))
+
+_Dependencies_
+
+- Recompiled plugin with [steampipe-plugin-sdk v4.1.9](https://github.com/turbot/steampipe-plugin-sdk/blob/main/CHANGELOG.md#v419-2022-11-30) which fixes hydrate function caching for aggregator connections. ([#16](https://github.com/turbot/steampipe-plugin-uptimerobot/pull/16))
+
 ## v0.0.3 [2022-11-11]
 
 _Bug fixes_
