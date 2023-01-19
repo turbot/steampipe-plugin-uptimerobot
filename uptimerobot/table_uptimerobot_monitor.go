@@ -128,7 +128,7 @@ func tableUptimeRobotMonitor(ctx context.Context) *plugin.Table {
 			{
 				Name:        "ssl",
 				Type:        proto.ColumnType_JSON,
-				Description: "The ssl of the monitor.",
+				Description: "The SSL configuration of the monitor.",
 				Transform:   transform.FromField("SSL"),
 			},
 		},
@@ -156,6 +156,23 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 		status := q.GetInt64Value()
 		input.Statuses = types.String(strconv.FormatInt(status, 10))
 	}
+
+	// These properties are not returned by default, so override
+	input.SSL = 1
+
+	// TOOD: Do we want to include these since they'd have their own tables?
+	//input.AlertContacts = 1
+	//input.Logs = 1
+	//input.MWindows = 1
+
+	// TODO: Not sure what response elements these map to
+	//input.CustomHttpHeaders = 1
+	//input.CustomHttpStatuses = 1
+	//input.Timezone = 1
+
+	// TODO: SDK currently does not handle these input/output params
+	//input.AuthType = 1
+	//input.ResponseTimes = 1
 
 	limit := d.QueryContext.Limit
 	if d.QueryContext.Limit != nil {
