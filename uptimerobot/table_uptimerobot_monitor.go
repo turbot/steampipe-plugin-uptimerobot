@@ -116,6 +116,16 @@ func tableUptimeRobotMonitor(ctx context.Context) *plugin.Table {
 				Description: "The timeout for the monitoring check.",
 			},
 			{
+				Name:        "alert_contacts",
+				Type:        proto.ColumnType_JSON,
+				Description: "The alert contacts of the monitor.",
+			},
+			{
+				Name:        "logs",
+				Type:        proto.ColumnType_JSON,
+				Description: "The logs of the monitor.",
+			},
+			{
 				Name:        "ssl",
 				Type:        proto.ColumnType_JSON,
 				Description: "The SSL configuration of the monitor.",
@@ -149,10 +159,10 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 
 	// These properties are not returned by default, so override
 	input.SSL = 1
+	input.AlertContacts = 1
+	input.Logs = 1
 
 	// TOOD: Do we want to include these since they'd have their own tables?
-	//input.AlertContacts = 1
-	//input.Logs = 1
 	//input.MWindows = 1
 
 	// TODO: Not sure what response elements these map to
