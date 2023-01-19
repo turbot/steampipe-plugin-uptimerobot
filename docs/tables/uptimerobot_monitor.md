@@ -41,3 +41,29 @@ from
 where
   type = 5;
 ```
+
+### Get alert contact details of a particular monitor
+
+```sql
+select
+  id,
+  friendly_name,
+  jsonb_pretty(alert_contacts) as alert_contacts
+from
+  uptimerobot_monitor
+where
+  id = '793508639';
+```
+
+### Get log details of a particular monitor
+
+```sql
+select
+  id,
+  friendly_name,
+  jsonb_pretty(logs) as logs
+from
+  uptimerobot_monitor
+where
+  id = '793508639';
+```

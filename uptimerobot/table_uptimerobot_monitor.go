@@ -159,10 +159,10 @@ func listMonitors(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateDat
 
 	// These properties are not returned by default, so override
 	input.SSL = 1
+	input.AlertContacts = 1
+	input.Logs = 1
 
 	// TOOD: Do we want to include these since they'd have their own tables?
-	//input.AlertContacts = 1
-	//input.Logs = 1
 	//input.MWindows = 1
 
 	// TODO: Not sure what response elements these map to
