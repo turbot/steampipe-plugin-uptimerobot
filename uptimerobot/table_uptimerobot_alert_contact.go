@@ -4,12 +4,12 @@ import (
 	"context"
 
 	"github.com/turbot/go-kit/types"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/uptimerobotapi"
 )
 
-//// TABLE DEFINITION
+// // TABLE DEFINITION
 func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 	return &plugin.Table{
 		Name:        "uptimerobot_alert_contact",
@@ -51,7 +51,7 @@ func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 	}
 }
 
-//// LIST FUNCTION
+// // LIST FUNCTION
 func listAlertContacts(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
 	conn, err := connect(ctx, d)
 	if err != nil {
@@ -88,7 +88,7 @@ func listAlertContacts(ctx context.Context, d *plugin.QueryData, _ *plugin.Hydra
 			d.StreamListItem(ctx, item)
 
 			// Context can be cancelled due to manual cancellation or the limit has been hit
-			if d.QueryStatus.RowsRemaining(ctx) == 0 {
+			if d.RowsRemaining(ctx) == 0 {
 				return nil, nil
 			}
 		}
@@ -110,7 +110,7 @@ func getAlertContact(ctx context.Context, d *plugin.QueryData, h *plugin.Hydrate
 		return nil, err
 	}
 
-	id := d.KeyColumnQuals["id"].GetStringValue()
+	id := d.EqualsQuals["id"].GetStringValue()
 
 	// Check if id is empty.
 	if id == "" {
