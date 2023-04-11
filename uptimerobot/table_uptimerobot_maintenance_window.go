@@ -5,8 +5,8 @@ import (
 	"strconv"
 
 	"github.com/turbot/go-kit/types"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/uptimerobotapi"
 )
 
@@ -51,12 +51,12 @@ func listMaintenanceWindows(ctx context.Context, d *plugin.QueryData, _ *plugin.
 		Limit: types.Int(50),
 	}
 
-	if q, ok := d.KeyColumnQuals["type"]; ok {
+	if q, ok := d.EqualsQuals["type"]; ok {
 		windowType := q.GetInt64Value()
 		params.Type = strconv.FormatInt(windowType, 10)
 	}
 
-	if q, ok := d.KeyColumnQuals["duration"]; ok {
+	if q, ok := d.EqualsQuals["duration"]; ok {
 		duration := q.GetInt64Value()
 		params.Duration = strconv.FormatInt(duration, 10)
 	}
@@ -73,7 +73,7 @@ func listMaintenanceWindows(ctx context.Context, d *plugin.QueryData, _ *plugin.
 			d.StreamListItem(ctx, element)
 
 			// Context can be cancelled due to manual cancellation or the limit has been hit
-			if d.QueryStatus.RowsRemaining(ctx) == 0 {
+			if d.RowsRemaining(ctx) == 0 {
 				return nil, nil
 			}
 		}
