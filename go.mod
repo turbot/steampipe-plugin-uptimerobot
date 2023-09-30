@@ -3,7 +3,7 @@ module github.com/turbot/steampipe-plugin-uptimerobot
 go 1.21
 
 require (
-	github.com/turbot/steampipe-plugin-sdk/v5 v5.6.0
+	github.com/turbot/steampipe-plugin-sdk/v5 v5.6.1
 	github.com/turbot/uptimerobotapi v0.0.1
 )
 
