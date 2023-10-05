@@ -93,7 +93,7 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/stevenle/topsort v0.2.0 // indirect
 	github.com/tkrajina/go-reflector v0.5.6 // indirect
-	github.com/turbot/go-kit v0.8.0-rc.0
+	github.com/turbot/go-kit v0.9.0-rc.0
 	github.com/zclconf/go-cty v1.14.0 // indirect
 	go.opentelemetry.io/otel v1.17.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/internal/retry v1.17.0 // indirect
