@@ -16,7 +16,17 @@ The `uptimerobot_maintenance_window` table provides insights into Maintenance Wi
 ### Basic info
 Explore which maintenance windows are currently active on your UptimeRobot account. This is useful for understanding when your website or service may be temporarily unavailable due to scheduled maintenance.
 
-```sql
+```sql+postgres
+select
+  id,
+  user,
+  friendly_name,
+  start_time
+from
+  uptimerobot_maintenance_window;
+```
+
+```sql+sqlite
 select
   id,
   user,
@@ -29,7 +39,18 @@ from
 ### List paused maintenance windows
 Discover the segments that have paused maintenance windows, allowing you to assess the elements within your system that may need attention or rescheduling. This is useful for understanding the current operational status and planning future maintenance activities.
 
-```sql
+```sql+postgres
+select
+  id,
+  friendly_name,
+  status
+from
+  uptimerobot_maintenance_window
+where
+  status = 0;
+```
+
+```sql+sqlite
 select
   id,
   friendly_name,
@@ -43,7 +64,18 @@ where
 ### List maintenance windows with duration longer than than 60 minutes
 Discover the segments that have maintenance windows extending beyond an hour. This information can be useful for identifying potential periods of downtime or service interruptions.
 
-```sql
+```sql+postgres
+select
+  id,
+  friendly_name,
+  duration
+from
+  uptimerobot_maintenance_window
+where
+  duration > 60;
+```
+
+```sql+sqlite
 select
   id,
   friendly_name,
@@ -57,7 +89,18 @@ where
 ### List maintenance windows that are checked on daily basis
 Discover the segments that undergo daily maintenance checks, helping you to understand the frequency and duration of these routine operations. This can assist in scheduling tasks and avoiding potential disruptions.
 
-```sql
+```sql+postgres
+select
+  id,
+  friendly_name,
+  duration
+from
+  uptimerobot_maintenance_window
+where
+  type = 2;
+```
+
+```sql+sqlite
 select
   id,
   friendly_name,

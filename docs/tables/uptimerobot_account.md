@@ -16,7 +16,18 @@ The `uptimerobot_account` table provides insights into the UptimeRobot account s
 ### Basic info
 Analyze the settings to understand the limits and intervals of your uptime monitors, as well as identify the users associated with each monitor. This is beneficial for managing resources and ensuring optimal monitoring performance.
 
-```sql
+```sql+postgres
+select
+  email,
+  user_id,
+  monitor_limit,
+  monitor_interval,
+  up_monitors
+from
+  uptimerobot_account;
+```
+
+```sql+sqlite
 select
   email,
   user_id,
@@ -30,7 +41,17 @@ from
 ### Get monitor limits of the account
 Explore the limitations and intervals for monitoring within your account. This can help you understand and manage your account's monitoring capacity and frequency.
 
-```sql
+```sql+postgres
+select
+  email,
+  user_id,
+  monitor_limit,
+  monitor_interval
+from
+  uptimerobot_account;
+```
+
+```sql+sqlite
 select
   email,
   user_id,
@@ -43,7 +64,18 @@ from
 ### List up, down, and paused monitors in the account
 Determine the status of your monitors across your account by identifying which ones are active, inactive, or paused. This can help you manage your resources effectively by focusing your attention on monitors that require immediate action.
 
-```sql
+```sql+postgres
+select
+  email,
+  user_id,
+  up_monitors,
+  down_monitors,
+  paused_monitors
+from
+  uptimerobot_account;
+```
+
+```sql+sqlite
 select
   email,
   user_id,
