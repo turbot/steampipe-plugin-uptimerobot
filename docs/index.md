@@ -69,7 +69,4 @@ connection "uptimerobot" {
 
 - `api_key` - UptimeRobot API key. Can also be set with the `UPTIMEROBOT_API_KEY` environment variable.
 
-## Get involved
 
-- Open source: https://github.com/turbot/steampipe-plugin-uptimerobot
-- Community: [Join #steampipe on Slack →](https://turbot.com/community/join)
