@@ -8,6 +8,7 @@ short_name: "uptimerobot"
 description: "Steampipe plugin to query monitors, alert contacts and more from UptimeRobot."
 og_description: "Query UptimeRobot with SQL! Open source CLI. No DB required."
 og_image: "/images/plugins/turbot/uptimerobot-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 
 # UptimeRobot + Steampipe
