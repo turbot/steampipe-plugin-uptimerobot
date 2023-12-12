@@ -6,18 +6,11 @@ import (
 	"os"
 
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/schema"
 	"github.com/turbot/uptimerobotapi"
 )
 
 type uptimerobotConfig struct {
-	APIKey *string `cty:"api_key"`
-}
-
-var ConfigSchema = map[string]*schema.Attribute{
-	"api_key": {
-		Type: schema.TypeString,
-	},
+	APIKey *string `hcl:"api_key"`
 }
 
 func ConfigInstance() interface{} {
