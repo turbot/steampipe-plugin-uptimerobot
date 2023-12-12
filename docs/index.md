@@ -8,13 +8,14 @@ short_name: "uptimerobot"
 description: "Steampipe plugin to query monitors, alert contacts and more from UptimeRobot."
 og_description: "Query UptimeRobot with SQL! Open source CLI. No DB required."
 og_image: "/images/plugins/turbot/uptimerobot-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 
 # UptimeRobot + Steampipe
 
 [UptimeRobot](https://uptimerobot.com/) is a free tool used to monitor websites.
 
-[Steampipe](https://steampipe.io) is an open source CLI to instantly query cloud APIs using SQL.
+[Steampipe](https://steampipe.io) is an open-source zero-ETL engine to instantly query cloud APIs using SQL.
 
 Get UptimeRobot account details:
 
@@ -68,7 +69,4 @@ connection "uptimerobot" {
 
 - `api_key` - UptimeRobot API key. Can also be set with the `UPTIMEROBOT_API_KEY` environment variable.
 
-## Get involved
 
-- Open source: https://github.com/turbot/steampipe-plugin-uptimerobot
-- Community: [Join #steampipe on Slack →](https://turbot.com/community/join)
