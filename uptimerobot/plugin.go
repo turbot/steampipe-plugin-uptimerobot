@@ -20,6 +20,12 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 		ConnectionConfigSchema: &plugin.ConnectionConfigSchema{
 			NewInstance: ConfigInstance,
 		},
+		ConnectionKeyColumns: []plugin.ConnectionKeyColumn{
+			{
+				Name:    "user_id",
+				Hydrate: getAccountUserId,
+			},
+		},
 		TableMap: map[string]*plugin.Table{
 			"uptimerobot_account":            tableUptimeRobotAccount(ctx),
 			"uptimerobot_alert_contact":      tableUptimeRobotAlertContact(ctx),

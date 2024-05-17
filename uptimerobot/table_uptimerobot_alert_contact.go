@@ -21,7 +21,7 @@ func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 			KeyColumns: plugin.SingleColumn("id"),
 			Hydrate:    getAlertContact,
 		},
-		Columns: []*plugin.Column{
+		Columns: commonColumns([]*plugin.Column{
 			{
 				Name:        "id",
 				Type:        proto.ColumnType_STRING,
@@ -47,7 +47,7 @@ func tableUptimeRobotAlertContact(ctx context.Context) *plugin.Table {
 				Type:        proto.ColumnType_STRING,
 				Description: "Alert contact's email address, phone, username, url or api key depending on the alert contact type.",
 			},
-		},
+		}),
 	}
 }
 
