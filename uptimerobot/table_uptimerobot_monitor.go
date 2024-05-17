@@ -32,7 +32,7 @@ func tableUptimeRobotMonitor(ctx context.Context) *plugin.Table {
 				},
 			},
 		},
-		Columns: []*plugin.Column{
+		Columns: commonColumns([]*plugin.Column{
 			{
 				Name:        "id",
 				Type:        proto.ColumnType_STRING,
@@ -131,7 +131,7 @@ func tableUptimeRobotMonitor(ctx context.Context) *plugin.Table {
 				Description: "The SSL configuration of the monitor.",
 				Transform:   transform.FromField("SSL"),
 			},
-		},
+		}),
 	}
 }
 

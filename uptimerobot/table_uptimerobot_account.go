@@ -5,6 +5,7 @@ import (
 
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/uptimerobotapi"
 )
 
 func tableUptimeRobotAccount(ctx context.Context) *plugin.Table {
@@ -29,19 +30,13 @@ func tableUptimeRobotAccount(ctx context.Context) *plugin.Table {
 	}
 }
 
-func listAccounts(ctx context.Context, d *plugin.QueryData, _ *plugin.HydrateData) (interface{}, error) {
-	conn, err := connect(ctx, d)
-	if err != nil {
-		plugin.Logger(ctx).Error("listAccounts", "connection_error", err)
-		return nil, err
-	}
-
-	account, err := conn.Account.GetAccountDetails()
+func listAccounts(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
+	account, err := getAccountUserMemoized(ctx, d, h)
 	if err != nil {
 		plugin.Logger(ctx).Error("listAccounts", "api_error", err)
 		return nil, err
 	}
 
-	d.StreamListItem(ctx, account.Account)
+	d.StreamListItem(ctx, account.(uptimerobotapi.Account))
 	return nil, nil
 }
