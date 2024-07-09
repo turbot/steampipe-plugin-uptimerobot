@@ -27,7 +27,7 @@ func tableUptimeRobotMaintenanceWindow(ctx context.Context) *plugin.Table {
 				},
 			},
 		},
-		Columns: []*plugin.Column{
+		Columns: commonColumns([]*plugin.Column{
 			{Name: "id", Type: proto.ColumnType_INT, Description: "The ID of the maintenance window."},
 			{Name: "friendly_name", Type: proto.ColumnType_STRING, Description: "Friendly name of the maintenance window."},
 			{Name: "status", Type: proto.ColumnType_INT, Description: "Status of the maintenance window. Possible values are 0 (paused), 1 (active)."},
@@ -36,7 +36,7 @@ func tableUptimeRobotMaintenanceWindow(ctx context.Context) *plugin.Table {
 			{Name: "start_time", Type: proto.ColumnType_STRING, Description: "Start time of the maintenance window."},
 			{Name: "duration", Type: proto.ColumnType_INT, Description: "Duration of the maintenance windows in minutes."},
 			{Name: "value", Type: proto.ColumnType_STRING, Description: "Separated with '-' and used only for weekly and monthly maintenance windows."},
-		},
+		}),
 	}
 }
 
