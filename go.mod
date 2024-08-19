@@ -1,11 +1,10 @@
 module github.com/turbot/steampipe-plugin-uptimerobot
 
 go 1.21.0
-
-toolchain go1.21.1
+toolchain go1.22.5
 
 require (
-	github.com/turbot/steampipe-plugin-sdk/v5 v5.10.1
+	github.com/turbot/steampipe-plugin-sdk/v5 v5.10.3
 	github.com/turbot/uptimerobotapi v0.0.1
 )
 
