@@ -5,7 +5,7 @@ import (
 	"errors"
 	"os"
 
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
 	"github.com/turbot/uptimerobotapi"
 )
 
@@ -19,10 +19,10 @@ func ConfigInstance() interface{} {
 
 // GetConfig :: retrieve and cast connection config from query data
 func GetConfig(connection *plugin.Connection) uptimerobotConfig {
-	if connection == nil || connection.Config == nil {
+	if connection == nil || connection.GetConfig() == nil {
 		return uptimerobotConfig{}
 	}
-	config, _ := connection.Config.(uptimerobotConfig)
+	config, _ := connection.GetConfig().(uptimerobotConfig)
 	return config
 }
 
